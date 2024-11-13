@@ -12,13 +12,17 @@ namespace pairProgrammingØvelse
     {
         private List<Record> recordList = new List<Record>()
         {
-            new Record("showshow", "Eminem", 200, 2021),
-            new Record("Parap", "Rihanna", 180, 2007),
-            new Record("Halo", "Beyonce", 210, 1998),
+            new Record(1, "showshow", "Eminem", 200, 2021),
+            new Record(2, "Parap", "Rihanna", 180, 2007),
+            new Record(3, "Halo", "Beyonce", 210, 1998),
         };
 
+        public Record GetById(int id)
+        {
+            return recordList.Find(record => record.Id == id);
+        }
 
-        public Record Add(Record record)
+        public Record? Add(Record record)
         {
             record.Validate();
             recordList.Add(record);
@@ -37,8 +41,11 @@ namespace pairProgrammingØvelse
             {
                 switch (sortBy.ToLower())
                 {
-                    case "title":
+                    case "titleasc":
                         records = records.OrderBy(record => record.Title).ToList();
+                        break;
+                    case "titledesc":
+                        records = records.OrderByDescending(record => record.Title).ToList();
                         break;
                     case "yearasc":
                         records = records.OrderBy(record => record.PublicationYear).ToList();
@@ -56,6 +63,17 @@ namespace pairProgrammingØvelse
             }
             return records;
         }
-           
+
+        public Record Delete(int id)
+        {
+            Record record = GetById(id);
+            if (record == null)
+            {
+                throw new ArgumentNullException("Record not found");
+            }
+            recordList.Remove(record);
+            return record;
+        }
+
     }
 }

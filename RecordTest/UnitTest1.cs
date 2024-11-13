@@ -6,11 +6,11 @@ namespace RecordTest
     public class UnitTest1
     {
 
-        private Record goodRecord = new Record("showshow", "Eminem", 200, 2021);
-        private Record badTitle = new Record(null, "Eminem", 200, 2021);
-        private Record badDuration = new Record("showshow", "Eminem", 0, 2021);
-        private Record badYear = new Record("showshow", "Eminem", 200, 2025);
-        private Record badArtist = new Record("showshow", null, 200, 2021);
+        private Record goodRecord = new Record(1, "showshow", "Eminem", 200, 2021);
+        private Record badTitle = new Record(2, null, "Eminem", 200, 2021);
+        private Record badDuration = new Record(3, "showshow", "Eminem", 0, 2021);
+        private Record badYear = new Record(4, "showshow", "Eminem", 200, 2025);
+        private Record badArtist = new Record(5, "showshow", null, 200, 2021);
 
 
         [TestMethod]

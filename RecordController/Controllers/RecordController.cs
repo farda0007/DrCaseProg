@@ -32,10 +32,14 @@ namespace DRrestAPI.Controllers
             return "value";
         }
 
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         // POST api/<RecordController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult<Record> Post([FromBody] Record value)
         {
+            Record record = recordRepo.Add(value);
+            return CreatedAtAction((nameof(GetAll)), new { title = record.Title }, record);
         }
 
         // PUT api/<RecordController>/5

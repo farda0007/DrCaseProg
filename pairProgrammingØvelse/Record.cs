@@ -8,13 +8,15 @@ namespace pairProgrammingØvelse
 {
     public class Record
     {
+        public int Id { get; set; }
         public string Title { get; set; }
         public string Artist { get; set; }
         public int Duration { get; set; }
         public int PublicationYear { get; set; }
 
-        public Record(string title, string artist, int duration, int publicationYear)
+        public Record(int id, string title, string artist, int duration, int publicationYear)
         {
+            Id = id;
             Title = title;
             Artist = artist;
             Duration = duration;
@@ -52,12 +54,13 @@ namespace pairProgrammingØvelse
 
         public override string ToString()
         {
-            return $"{{{nameof(Title)}={Title}, {nameof(Artist)}={Artist}, {nameof(Duration)}={Duration.ToString()}, {nameof(PublicationYear)}={PublicationYear.ToString()}}}";
+            return $"{{{nameof(Id)}={Id}, {nameof(Title)}={Title}, {nameof(Artist)}={Artist}, {nameof(Duration)}={Duration.ToString()}, {nameof(PublicationYear)}={PublicationYear.ToString()}}}";
         }
 
         public override bool Equals(object? obj)
         {
             return obj is Record record &&
+                   Id == record.Id &&
                    Title == record.Title &&
                    Artist == record.Artist &&
                    Duration == record.Duration &&
@@ -66,7 +69,7 @@ namespace pairProgrammingØvelse
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Title, Artist, Duration, PublicationYear);
+            return HashCode.Combine(Id, Title, Artist, Duration, PublicationYear);
         }
     }
 }
